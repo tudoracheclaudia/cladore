@@ -4,277 +4,451 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLADORÉ | Premium Store</title>
+
 <style>
-:root{--bg:#09090e;--panel:#15141d;--border:#30283d;--purple:#a855f7;--text:#f7f3fc;--muted:#aaa3b8}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
-button,input,select{font:inherit}
-button,a{cursor:pointer}
-a{color:inherit;text-decoration:none}
-header{position:sticky;top:0;z-index:5;background:#0d0b12f5;border-bottom:1px solid var(--border)}
-nav{max-width:1150px;margin:auto;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px}
-.logo{font-size:25px;font-weight:900;letter-spacing:3px}
-.logo span{color:var(--purple)}
-button{color:white;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:11px 14px}
-button:hover{border-color:var(--purple)}
-.primary{background:linear-gradient(120deg,#7028bd,#b05af5);border:0;font-weight:bold}
-main{max-width:1150px;margin:auto;padding:24px 20px 60px}
-.hero{padding:45px 30px;border:1px solid #42275c;border-radius:22px;background:radial-gradient(ellipse at 90% 20%,#7933a955,transparent 45%),#15111d}
-.hero h1{font-size:clamp(35px,6vw,65px);margin:15px 0}
-.hero h1 span{color:#c084fc}
-.hero p{color:var(--muted);line-height:1.7;max-width:550px}
-.eyebrow{color:#c084fc;font-size:12px;letter-spacing:2px;text-transform:uppercase}
-.heading{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:35px 0 20px}
-.heading h2{margin:0 0 8px}
-.heading p{color:var(--muted);margin:0;font-size:14px}
-input,select{background:var(--panel);border:1px solid var(--border);color:white;border-radius:10px;padding:12px}
-input{max-width:300px;width:100%}
-.categories{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
-.categories button.active{background:#512078;border-color:var(--purple)}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
-.card{overflow:hidden;border:1px solid var(--border);border-radius:16px;background:var(--panel)}
-.card img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:#211b2b;cursor:pointer}
-.card img:hover{opacity:.85}
-.info{padding:13px}
-.info h3{font-size:16px;cursor:pointer}
-.info h3:hover{color:#d8b4fe}
-.info p{font-size:12px;color:var(--muted);line-height:1.5}
-.price{font-size:19px;font-weight:bold}
-.old{color:#81788e;text-decoration:line-through;font-size:13px;margin-left:8px}
-.actions{display:flex;gap:7px;margin-top:13px}
-.actions button:first-child{flex:1}
-.detail{display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:start;margin-top:20px}
-.detail>img{width:100%;border-radius:20px;border:1px solid var(--border);background:var(--panel)}
-.detail h1{font-size:clamp(30px,4vw,46px);margin:14px 0}
-.description{color:#c7c0d1;line-height:1.8;margin:24px 0}
-.detail select{display:block;width:100%;max-width:320px;margin-top:10px}
-.detail-buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.detail-buttons button{padding:14px}
-.back{margin:0 0 12px}
-.note{font-size:12px;color:var(--muted);line-height:1.7;margin-top:24px}
-.related{margin-top:45px}
-.empty{padding:40px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:15px;grid-column:1/-1}
-.overlay{display:none;position:fixed;inset:0;z-index:10;background:#000b;align-items:center;justify-content:center;padding:15px}
-.overlay.show{display:flex}
-.drawer{width:min(480px,100%);max-height:85vh;overflow:auto;background:#15121d;border:1px solid var(--border);border-radius:18px;padding:22px}
-.drawer-head{display:flex;justify-content:space-between;align-items:center}
-.cart-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
-.cart-item img{width:65px;height:65px;object-fit:cover;border-radius:8px}
-.cart-item .grow{flex:1}
-.cart-item p{color:var(--muted);font-size:13px}
-footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid var(--border)}
-@media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.detail{gap:20px}}
-@media(max-width:560px){main{padding:15px 12px 40px}.hero{padding:30px 20px}.heading{align-items:stretch;flex-direction:column}input{max-width:none}.detail{grid-template-columns:1fr;gap:20px}.grid{gap:10px}.info{padding:10px}.info h3{font-size:14px}.logo{font-size:20px}}
+:root {
+  --bg:#09090e;
+  --panel:#15141d;
+  --border:#30283d;
+  --purple:#a855f7;
+  --text:#f7f3fc;
+  --muted:#aaa3b8;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+}
+button,input,select,textarea { font:inherit; }
+button { cursor:pointer; }
+button,a { cursor:pointer; }
+a { color:inherit;text-decoration:none; }
+header {
+  position:sticky;top:0;z-index:5;
+  background:#0d0b12f5;
+  border-bottom:1px solid var(--border);
+}
+nav {
+  max-width:1150px;margin:auto;padding:18px 22px;
+  display:flex;justify-content:space-between;
+  align-items:center;gap:12px;
+}
+.logo { font-size:25px;font-weight:900;letter-spacing:3px; }
+.logo span { color:var(--purple); }
+button {
+  color:white;background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:10px;padding:11px 14px;
+}
+button:hover { border-color:var(--purple); }
+.primary {
+  background:linear-gradient(120deg,#7028bd,#b05af5);
+  border:0;font-weight:bold;
+}
+main { max-width:1150px;margin:auto;padding:24px 20px 60px; }
+.hero {
+  padding:45px 30px;border:1px solid #42275c;
+  border-radius:22px;
+  background:radial-gradient(ellipse at 90% 20%,#7933a955,transparent 45%),#15111d;
+}
+.hero h1 { font-size:clamp(35px,6vw,65px);margin:15px 0; }
+.hero h1 span { color:#c084fc; }
+.hero p { color:var(--muted);line-height:1.7;max-width:550px; }
+.eyebrow {
+  color:#c084fc;font-size:12px;letter-spacing:2px;
+  text-transform:uppercase;
+}
+.heading {
+  display:flex;justify-content:space-between;
+  align-items:center;gap:15px;margin:35px 0 20px;
+}
+.heading h2 { margin:0 0 8px; }
+.heading p { color:var(--muted);margin:0;font-size:14px; }
+input,select,textarea {
+  background:var(--panel);border:1px solid var(--border);
+  color:white;border-radius:10px;padding:12px;width:100%;
+}
+input { max-width:100%; }
+.categories { display:flex;flex-wrap:wrap;gap:8px;margin:20px 0; }
+.categories button.active { background:#512078;border-color:var(--purple); }
+.grid { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px; }
+.card { overflow:hidden;border:1px solid var(--border);border-radius:16px;background:var(--panel); }
+.card img { display:block;width:100%;aspect-ratio:1;object-fit:cover;background:#211b2b;cursor:pointer; }
+.info { padding:13px; }
+.info h3 { font-size:16px;cursor:pointer; }
+.info p { font-size:12px;color:var(--muted);line-height:1.5; }
+.price { font-size:19px;font-weight:bold; }
+.old { color:#81788e;text-decoration:line-through;font-size:13px;margin-left:8px; }
+.actions { display:flex;gap:7px;margin-top:13px; }
+.actions button:first-child { flex:1; }
+.overlay {
+  display:none;position:fixed;inset:0;z-index:10;
+  background:#000b;align-items:center;justify-content:center;padding:15px;
+}
+.overlay.show { display:flex; }
+.drawer {
+  width:min(560px,100%);max-height:90vh;overflow:auto;
+  background:#15121d;border:1px solid var(--border);
+  border-radius:18px;padding:22px;
+}
+.drawer-head { display:flex;justify-content:space-between;align-items:center;gap:12px; }
+.cart-item {
+  display:flex;align-items:center;gap:12px;
+  padding:12px 0;border-bottom:1px solid var(--border);
+}
+.cart-item img { width:65px;height:65px;object-fit:cover;border-radius:8px; }
+.grow { flex:1; }
+.cart-item p,.muted { color:var(--muted);font-size:13px; }
+.form-grid { display:grid;grid-template-columns:1fr 1fr;gap:12px; }
+.field { display:flex;flex-direction:column;gap:6px;margin:10px 0; }
+.field label { font-size:13px;color:#d8cfe5; }
+.full { grid-column:1/-1; }
+.payment-option {
+  display:flex;align-items:center;gap:10px;
+  padding:14px;border:1px solid var(--border);
+  border-radius:12px;margin:10px 0;cursor:pointer;
+}
+.payment-option input { width:auto;accent-color:var(--purple); }
+.note { font-size:12px;color:var(--muted);line-height:1.7; }
+.empty {
+  padding:40px;text-align:center;color:var(--muted);
+  border:1px dashed var(--border);border-radius:15px;grid-column:1/-1;
+}
+footer {
+  text-align:center;padding:30px;color:var(--muted);
+  border-top:1px solid var(--border);
+}
+@media(max-width:850px) {
+  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:560px) {
+  main { padding:15px 12px 40px; }
+  .hero { padding:30px 20px; }
+  .heading { align-items:stretch;flex-direction:column; }
+  .grid { gap:10px; }
+  .info { padding:10px; }
+  .info h3 { font-size:14px; }
+  .logo { font-size:20px; }
+  nav { padding:14px 12px; }
+  nav button { padding:9px 8px;font-size:12px; }
+  .form-grid { grid-template-columns:1fr; }
+  .full { grid-column:auto; }
+}
 </style>
 </head>
+
 <body>
 <header>
-<nav>
-<a class="logo" href="#" onclick="goHome();return false">CLADOR<span>É</span></a>
-<div>
-<button onclick="showFavorites()">♡ Favorite <span id="favCount">0</span></button>
-<button onclick="showCart()">🛒 Coș <span id="cartCount">0</span></button>
-</div>
-</nav>
+  <nav>
+    <a class="logo" href="#" onclick="goHome();return false">CLADOR<span>É</span></a>
+    <div>
+      <button onclick="showFavorites()">♡ Favorite <span id="favCount">0</span></button>
+      <button onclick="showCart()">🛒 Coș <span id="cartCount">0</span></button>
+    </div>
+  </nav>
 </header>
 
 <main id="app"></main>
 
-<footer><b>CLADORÉ</b><p>Stilul tău. Regulile tale.</p><small>Magazin demonstrativ · Fără plăți reale</small></footer>
+<footer>
+  <b>CLADORÉ</b>
+  <p>Stilul tău. Regulile tale.</p>
+  <small>Versiune demonstrativă · Fără plăți reale</small>
+</footer>
 
 <div class="overlay" id="overlay" onclick="if(event.target===this)closeOverlay()">
-<div class="drawer">
-<div class="drawer-head"><h2 id="drawerTitle">Coșul tău</h2><button onclick="closeOverlay()">✕</button></div>
-<div id="drawerContent"></div>
-</div>
+  <div class="drawer">
+    <div class="drawer-head">
+      <h2 id="drawerTitle">Coșul tău</h2>
+      <button onclick="closeOverlay()">✕</button>
+    </div>
+    <div id="drawerContent"></div>
+  </div>
 </div>
 
 <script>
-const products=[
-{id:1,name:"Oversized Black Hoodie",cat:"Haine",price:189,old:249,tag:"Bestseller",img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85",desc:"Hanorac oversized cu design minimalist, confortabil și ușor de asortat pentru un outfit streetwear.",sizes:["XS","S","M","L","XL"]},
-{id:2,name:"Urban Sneakers",cat:"Încălțăminte",price:279,old:349,tag:"Popular",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85",desc:"Sneakers cu design urban și aspect modern, potriviți pentru ținutele de zi cu zi.",sizes:["38","39","40","41","42","43","44"]},
-{id:3,name:"Classic Silver Watch",cat:"Ceasuri",price:329,old:399,tag:"Premium",img:"https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=85",desc:"Ceas cu aspect elegant și linii curate, potrivit pentru ținute casual sau ocazii speciale.",sizes:[]},
-{id:4,name:"Minimal Black Cap",cat:"Accesorii",price:79,old:109,tag:"Nou",img:"https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=900&q=85",desc:"Șapcă neagră minimalistă, ușor de combinat cu hanorace, tricouri și jachete.",sizes:["Universal"]},
-{id:5,name:"Essential White Tee",cat:"Haine",price:89,old:119,tag:"Basic",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85",desc:"Tricou alb cu design simplu și versatil, o piesă de bază pentru un look modern.",sizes:["XS","S","M","L","XL"]},
-{id:6,name:"Streetwear Jacket",cat:"Haine",price:259,old:329,tag:"Urban",img:"https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=900&q=85",desc:"Jachetă cu vibe urban, ideală pentru combinații streetwear și ținute de tranziție.",sizes:["S","M","L","XL"]},
-{id:7,name:"Everyday Backpack",cat:"Accesorii",price:159,old:199,tag:"Practic",img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85",desc:"Rucsac practic cu aspect modern pentru școală, ieșiri și lucrurile de zi cu zi.",sizes:["Universal"]},
-{id:8,name:"Wireless Headphones",cat:"Gadgeturi",price:219,old:279,tag:"Tech",img:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85",desc:"Căști cu design modern pentru muzică, videoclipuri și momentele tale de relaxare.",sizes:[]},
-{id:9,name:"Retro Running Shoes",cat:"Încălțăminte",price:299,old:369,tag:"Retro",img:"https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=900&q=85",desc:"Sneakers cu inspirație retro și un look sport, ușor de integrat în outfituri casual.",sizes:["38","39","40","41","42","43","44"]},
-{id:10,name:"Steel Bracelet",cat:"Accesorii",price:69,old:99,tag:"Minimal",img:"https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=900&q=85",desc:"Brățară cu aspect metalic minimalist, un accesoriu discret pentru un look complet.",sizes:["Universal"]},
-{id:11,name:"Lifestyle Watch",cat:"Ceasuri",price:399,old:499,tag:"Tech",img:"https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=900&q=85",desc:"Ceas cu design contemporan, potrivit pentru stilul de zi cu zi și ținute sportive.",sizes:[]},
-{id:12,name:"Everyday Sunglasses",cat:"Accesorii",price:99,old:139,tag:"Summer",img:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=85",desc:"Ochelari cu look modern, ideali pentru completarea ținutelor casual.",sizes:["Universal"]}
+const products = [
+ {id:1,name:"Oversized Black Hoodie",cat:"Haine",price:189,old:249,tag:"Bestseller",img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85",desc:"Hanorac oversized cu design minimalist, perfect pentru un outfit streetwear.",sizes:["XS","S","M","L","XL"]},
+ {id:2,name:"Urban Sneakers",cat:"Încălțăminte",price:279,old:349,tag:"Popular",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85",desc:"Sneakers cu design urban pentru ținutele de zi cu zi.",sizes:["38","39","40","41","42","43","44"]},
+ {id:3,name:"Classic Silver Watch",cat:"Ceasuri",price:329,old:399,tag:"Premium",img:"https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=85",desc:"Ceas elegant cu linii curate și aspect modern.",sizes:[]},
+ {id:4,name:"Minimal Black Cap",cat:"Accesorii",price:79,old:109,tag:"Nou",img:"https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=900&q=85",desc:"Șapcă neagră minimalistă, ușor de asortat.",sizes:["Universal"]},
+ {id:5,name:"Essential White Tee",cat:"Haine",price:89,old:119,tag:"Basic",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85",desc:"Tricou alb simplu și versatil pentru orice outfit.",sizes:["XS","S","M","L","XL"]},
+ {id:6,name:"Streetwear Jacket",cat:"Haine",price:259,old:329,tag:"Urban",img:"https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=900&q=85",desc:"Jachetă cu vibe urban, ideală pentru ținute streetwear.",sizes:["S","M","L","XL"]},
+ {id:7,name:"Everyday Backpack",cat:"Accesorii",price:159,old:199,tag:"Practic",img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85",desc:"Rucsac practic pentru școală, ieșiri și lucrurile de zi cu zi.",sizes:["Universal"]},
+ {id:8,name:"Wireless Headphones",cat:"Gadgeturi",price:219,old:279,tag:"Tech",img:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85",desc:"Căști cu design modern pentru muzică și relaxare.",sizes:[]},
+ {id:9,name:"Retro Running Shoes",cat:"Încălțăminte",price:299,old:369,tag:"Retro",img:"https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=900&q=85",desc:"Sneakers cu inspirație retro și look sport.",sizes:["38","39","40","41","42","43","44"]},
+ {id:10,name:"Steel Bracelet",cat:"Accesorii",price:69,old:99,tag:"Minimal",img:"https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=900&q=85",desc:"Brățară metalică minimalistă pentru un look complet.",sizes:["Universal"]},
+ {id:11,name:"Lifestyle Watch",cat:"Ceasuri",price:399,old:499,tag:"Tech",img:"https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=900&q=85",desc:"Ceas cu design contemporan pentru stilul de zi cu zi.",sizes:[]},
+ {id:12,name:"Everyday Sunglasses",cat:"Accesorii",price:99,old:139,tag:"Summer",img:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=85",desc:"Ochelari cu look modern pentru ținutele casual.",sizes:["Universal"]}
 ];
 
-let category="Toate";
-let search="";
-let favorites=[];
-let cart=[];
+let category = "Toate";
+let search = "";
+let favorites = [];
+let cart = [];
 
-try{favorites=JSON.parse(localStorage.getItem("cladore_favs")||"[]")}catch(e){favorites=[]}
-try{cart=JSON.parse(localStorage.getItem("cladore_cart")||"[]")}catch(e){cart=[]}
+try { favorites = JSON.parse(localStorage.getItem("cladore_favs") || "[]"); } catch(e) {}
+try { cart = JSON.parse(localStorage.getItem("cladore_cart") || "[]"); } catch(e) {}
 
-const app=document.getElementById("app");
-const money=n=>n.toLocaleString("ro-RO")+" lei";
+const app = document.getElementById("app");
+const money = n => n.toLocaleString("ro-RO") + " lei";
 
-function updateCounts(){
-document.getElementById("favCount").textContent=favorites.length;
-document.getElementById("cartCount").textContent=cart.reduce((s,x)=>s+x.qty,0);
-localStorage.setItem("cladore_favs",JSON.stringify(favorites));
-localStorage.setItem("cladore_cart",JSON.stringify(cart));
+function updateCounts() {
+  document.getElementById("favCount").textContent = favorites.length;
+  document.getElementById("cartCount").textContent = cart.reduce((s,x)=>s+x.qty,0);
+  localStorage.setItem("cladore_favs",JSON.stringify(favorites));
+  localStorage.setItem("cladore_cart",JSON.stringify(cart));
 }
 
-function card(p){
-return `<article class="card">
-<img src="${p.img}" alt="${p.name}" onclick="openProduct(${p.id})">
-<div class="info">
-<div class="eyebrow">${p.cat}</div>
-<h3 onclick="openProduct(${p.id})">${p.name}</h3>
-<p>${p.desc}</p>
-<small>${p.tag}</small>
-<p><span class="price">${money(p.price)}</span><span class="old">${money(p.old)}</span></p>
-<div class="actions">
-<button class="primary" onclick="addCart(${p.id})">Adaugă în coș</button>
-<button onclick="toggleFav(${p.id})">${favorites.includes(p.id)?"♥":"♡"}</button>
-</div>
-</div></article>`;
+function card(p) {
+  return `<article class="card">
+    <img src="${p.img}" alt="${p.name}" onclick="openProduct(${p.id})">
+    <div class="info">
+      <div class="eyebrow">${p.cat}</div>
+      <h3 onclick="openProduct(${p.id})">${p.name}</h3>
+      <p>${p.desc}</p>
+      <small>${p.tag}</small>
+      <p><span class="price">${money(p.price)}</span><span class="old">${money(p.old)}</span></p>
+      <div class="actions">
+        <button class="primary" onclick="addCart(${p.id})">Adaugă în coș</button>
+        <button onclick="toggleFav(${p.id})">${favorites.includes(p.id)?"♥":"♡"}</button>
+      </div>
+    </div>
+  </article>`;
 }
 
-function renderStore(){
-let list=products.filter(p=>(category==="Toate"||p.cat===category)&&(p.name+" "+p.cat+" "+p.desc).toLowerCase().includes(search.toLowerCase()));
-app.innerHTML=`
-<section class="hero">
-<div class="eyebrow">Colecția CLADORÉ</div>
-<h1>Stil premium.<br><span>Atitudine proprie.</span></h1>
-<p>Descoperă haine, sneakers, accesorii, ceasuri și gadgeturi pentru stilul tău.</p>
-<button class="primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Vezi produsele ↓</button>
-</section>
-<section id="products">
-<div class="heading"><div><h2>Explorează colecția</h2><p>${list.length} produse</p></div>
-<input id="search" placeholder="Caută un produs..." value="${search.replace(/"/g,"&quot;")}"></div>
-<div class="categories">${["Toate","Haine","Încălțăminte","Accesorii","Ceasuri","Gadgeturi"].map(c=>`<button class="${c===category?"active":""}" onclick="setCategory('${c}')">${c}</button>`).join("")}</div>
-<div class="grid">${list.length?list.map(card).join(""):'<div class="empty">Nu am găsit produse.</div>'}</div>
-</section>`;
-document.getElementById("search").addEventListener("input",e=>{
-search=e.target.value;
-const pos=e.target.selectionStart;
-renderStore();
-const i=document.getElementById("search");
-i.focus();
-i.setSelectionRange(pos,pos);
-});
+function renderStore() {
+  const list = products.filter(p =>
+    (category==="Toate" || p.cat===category) &&
+    (p.name+" "+p.cat+" "+p.desc).toLowerCase().includes(search.toLowerCase())
+  );
+
+  app.innerHTML = `
+    <section class="hero">
+      <div class="eyebrow">Colecția CLADORÉ</div>
+      <h1>Stil premium.<br><span>Atitudine proprie.</span></h1>
+      <p>Descoperă haine, sneakers, accesorii, ceasuri și gadgeturi pentru stilul tău.</p>
+      <button class="primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Vezi produsele ↓</button>
+    </section>
+    <section id="products">
+      <div class="heading">
+        <div><h2>Explorează colecția</h2><p>${list.length} produse</p></div>
+        <input id="search" placeholder="Caută un produs..." value="${search.replace(/"/g,"&quot;")}">
+      </div>
+      <div class="categories">
+        ${["Toate","Haine","Încălțăminte","Accesorii","Ceasuri","Gadgeturi"].map(c=>`<button class="${c===category?"active":""}" onclick="setCategory('${c}')">${c}</button>`).join("")}
+      </div>
+      <div class="grid">${list.length?list.map(card).join(""):'<div class="empty">Nu am găsit produse.</div>'}</div>
+    </section>`;
+
+  document.getElementById("search").addEventListener("input",e=>{
+    search=e.target.value;
+    const pos=e.target.selectionStart;
+    renderStore();
+    const input=document.getElementById("search");
+    input.focus();
+    input.setSelectionRange(pos,pos);
+  });
 }
 
-function setCategory(c){category=c;renderStore()}
+function setCategory(c) { category=c;renderStore(); }
+function openProduct(id) { location.hash="produs/"+Number(id); }
+function goHome() { location.hash="magazin";window.scrollTo(0,0); }
 
-/* REPARAT: pagina produsului folosește hash-ul #produs/ID */
-function openProduct(id){
-location.hash="produs/"+Number(id);
-}
-
-function goHome(){
-location.hash="magazin";
-window.scrollTo(0,0);
-}
-
-function renderProduct(id){
-const p=products.find(x=>x.id===Number(id));
-if(!p){
-app.innerHTML='<div class="empty"><h2>Produsul nu a fost găsit</h2><button onclick="goHome()">Înapoi la magazin</button></div>';
-return;
-}
-const related=products.filter(x=>x.cat===p.cat&&x.id!==p.id).slice(0,4);
-app.innerHTML=`
-<button class="back" onclick="goHome()">← Înapoi la magazin</button>
-<section class="detail">
-<img src="${p.img}" alt="${p.name}">
-<div>
-<div class="eyebrow">${p.cat} · ${p.tag}</div>
-<h1>${p.name}</h1>
-<div><span class="price">${money(p.price)}</span><span class="old">${money(p.old)}</span></div>
-<p class="description">${p.desc}</p>
-${p.sizes.length?`<label for="size"><b>Alege mărimea</b></label><select id="size">${p.sizes.map(s=>`<option>${s}</option>`).join("")}</select>`:""}
-<div class="detail-buttons">
-<button class="primary" onclick="addFromPage(${p.id})">🛒 Adaugă în coș</button>
-<button onclick="toggleFav(${p.id})">${favorites.includes(p.id)?"♥ În favorite":"♡ Favorite"}</button>
-</div>
-<p class="note">Pagina individuală a produsului CLADORÉ. Acesta este un magazin demonstrativ; nu se efectuează plăți sau comenzi reale.</p>
-</div>
-</section>
-${related.length?`<section class="related"><h2>Produse similare</h2><div class="grid">${related.map(card).join("")}</div></section>`:""}`;
-window.scrollTo(0,0);
+function renderProduct(id) {
+  const p=products.find(x=>x.id===Number(id));
+  if(!p) { app.innerHTML='<div class="empty">Produsul nu a fost găsit.</div>';return; }
+  const related=products.filter(x=>x.cat===p.cat&&x.id!==p.id).slice(0,4);
+  app.innerHTML=`
+    <button onclick="goHome()">← Înapoi la magazin</button>
+    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;margin-top:20px">
+      <img src="${p.img}" alt="${p.name}" style="width:100%;border-radius:18px">
+      <div>
+        <div class="eyebrow">${p.cat} · ${p.tag}</div>
+        <h1>${p.name}</h1>
+        <p class="price">${money(p.price)}</p>
+        <p style="line-height:1.8;color:#c7c0d1">${p.desc}</p>
+        ${p.sizes.length?`<label for="size">Alege mărimea</label><select id="size">${p.sizes.map(s=>`<option>${s}</option>`).join("")}</select>`:""}
+        <p><button class="primary" onclick="addFromPage(${p.id})">🛒 Adaugă în coș</button>
+        <button onclick="toggleFav(${p.id})">♡ Favorite</button></p>
+      </div>
+    </section>
+    ${related.length?`<h2>Produse similare</h2><div class="grid">${related.map(card).join("")}</div>`:""}`;
+  window.scrollTo(0,0);
 }
 
-function route(){
-const match=location.hash.match(/^#produs\/(\d+)$/);
-if(match){
-renderProduct(Number(match[1]));
-}else{
-renderStore();
-}
+function route() {
+  const match=location.hash.match(/^#produs\/(\d+)$/);
+  if(match) renderProduct(Number(match[1]));
+  else renderStore();
 }
 
-function toggleFav(id){
-id=Number(id);
-favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];
-updateCounts();
-if(location.hash.startsWith("#produs/"))route();else renderStore();
+function toggleFav(id) {
+  id=Number(id);
+  favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];
+  updateCounts();
+  if(location.hash.startsWith("#produs/")) route();
+  else renderStore();
 }
 
-function addCart(id,size="Standard"){
-id=Number(id);
-const old=cart.find(x=>x.id===id&&x.size===size);
-if(old)old.qty++;
-else cart.push({id,size,qty:1});
-updateCounts();
-alert("Produs adăugat în coș!");
+function addCart(id,size="Standard") {
+  id=Number(id);
+  const item=cart.find(x=>x.id===id&&x.size===size);
+  if(item) item.qty++;
+  else cart.push({id,size,qty:1});
+  updateCounts();
+  alert("Produs adăugat în coș!");
 }
 
-function addFromPage(id){
-const size=document.getElementById("size");
-addCart(id,size?size.value:"Standard");
+function addFromPage(id) {
+  const size=document.getElementById("size");
+  addCart(id,size?size.value:"Standard");
 }
 
-function showCart(){
-document.getElementById("drawerTitle").textContent="Coșul tău";
-const total=cart.reduce((s,x)=>{
-const p=products.find(p=>p.id===x.id);
-return s+(p?p.price:0)*x.qty;
-},0);
-document.getElementById("drawerContent").innerHTML=cart.length?
-cart.map(x=>{
-const p=products.find(y=>y.id===x.id);
-if(!p)return "";
-return `<div class="cart-item"><img src="${p.img}" alt="${p.name}"><div class="grow"><b>${p.name}</b><p>${x.size} · ${money(p.price)} × ${x.qty}</p><button onclick="changeQty(${x.id},'${x.size}',-1)">−</button> <button onclick="changeQty(${x.id},'${x.size}',1)">+</button></div><button onclick="removeCart(${x.id},'${x.size}')">✕</button></div>`;
-}).join("")+
-`<h3>Total: ${money(total)}</h3><p class="note">Magazin demo: comenzile și plățile reale nu sunt activate.</p>`:
-'<div class="empty">Coșul este gol.</div>';
-document.getElementById("overlay").classList.add("show");
+function changeQty(id,size,delta) {
+  const item=cart.find(x=>x.id===id&&x.size===size);
+  if(item) item.qty+=delta;
+  cart=cart.filter(x=>x.qty>0);
+  updateCounts();
+  showCart();
 }
 
-function changeQty(id,size,delta){
-const x=cart.find(y=>y.id===id&&y.size===size);
-if(x)x.qty+=delta;
-cart=cart.filter(y=>y.qty>0);
-updateCounts();
-showCart();
+function removeCart(id,size) {
+  cart=cart.filter(x=>!(x.id===id&&x.size===size));
+  updateCounts();
+  showCart();
 }
 
-function removeCart(id,size){
-cart=cart.filter(x=>!(x.id===id&&x.size===size));
-updateCounts();
-showCart();
+function showCart() {
+  document.getElementById("drawerTitle").textContent="Coșul tău";
+  const total=cart.reduce((sum,x)=>{
+    const p=products.find(p=>p.id===x.id);
+    return sum+(p?p.price:0)*x.qty;
+  },0);
+
+  document.getElementById("drawerContent").innerHTML=cart.length?
+    cart.map(x=>{
+      const p=products.find(y=>y.id===x.id);
+      if(!p)return "";
+      return `<div class="cart-item">
+        <img src="${p.img}" alt="${p.name}">
+        <div class="grow"><b>${p.name}</b><p>${x.size} · ${money(p.price)} × ${x.qty}</p>
+          <button onclick="changeQty(${x.id},'${x.size}',-1)">−</button>
+          <button onclick="changeQty(${x.id},'${x.size}',1)">+</button>
+        </div>
+        <button onclick="removeCart(${x.id},'${x.size}')">✕</button>
+      </div>`;
+    }).join("")+
+    `<h3>Total produse: ${money(total)}</h3>
+     <button class="primary" style="width:100%" onclick="showCheckout()">Continuă spre checkout →</button>
+     <p class="note">Checkout demonstrativ. Nu se efectuează plăți reale.</p>`:
+    '<div class="empty">Coșul este gol.</div>';
+
+  document.getElementById("overlay").classList.add("show");
 }
 
-function showFavorites(){
-document.getElementById("drawerTitle").textContent="Favoritele tale";
-const list=products.filter(p=>favorites.includes(p.id));
-document.getElementById("drawerContent").innerHTML=list.length?
-list.map(p=>`<div class="cart-item"><img src="${p.img}" alt="${p.name}"><div class="grow"><b>${p.name}</b><p>${money(p.price)}</p><button onclick="closeOverlay();openProduct(${p.id})">Vezi produsul</button></div><button onclick="toggleFav(${p.id});showFavorites()">✕</button></div>`).join(""):
-'<div class="empty">Nu ai produse favorite.</div>';
-document.getElementById("overlay").classList.add("show");
+function showCheckout() {
+  if(!cart.length) {
+    alert("Coșul este gol!");
+    return;
+  }
+
+  const total=cart.reduce((sum,x)=>{
+    const p=products.find(p=>p.id===x.id);
+    return sum+(p?p.price:0)*x.qty;
+  },0);
+
+  document.getElementById("drawerTitle").textContent="Finalizare comandă";
+  document.getElementById("drawerContent").innerHTML=`
+    <p class="muted">Completează datele pentru livrare.</p>
+    <form id="checkoutForm" onsubmit="submitDemoOrder(event)">
+      <div class="form-grid">
+        <div class="field">
+          <label for="customerName">Nume complet *</label>
+          <input id="customerName" name="customerName" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="phone">Telefon *</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+        </div>
+        <div class="field full">
+          <label for="email">Email (opțional)</label>
+          <input id="email" name="email" type="email" autocomplete="email">
+        </div>
+        <div class="field full">
+          <label for="address">Adresă completă *</label>
+          <input id="address" name="address" autocomplete="street-address" required>
+        </div>
+        <div class="field">
+          <label for="city">Oraș *</label>
+          <input id="city" name="city" autocomplete="address-level2" required>
+        </div>
+        <div class="field">
+          <label for="postal">Cod poștal</label>
+          <input id="postal" name="postal" autocomplete="postal-code">
+        </div>
+      </div>
+
+      <h3>Metoda de plată</h3>
+      <label class="payment-option">
+        <input type="radio" name="payment" value="card" required>
+        <span>💳 <b>Card online</b><br><small class="muted">Demo — plata nu este activă</small></span>
+      </label>
+      <label class="payment-option">
+        <input type="radio" name="payment" value="cod" required>
+        <span>📦 <b>Ramburs la livrare</b><br><small class="muted">Demo — comanda nu va fi trimisă</small></span>
+      </label>
+
+      <h3>Total produse: ${money(total)}</h3>
+      <p class="note">Aceasta este doar o demonstrație. Datele nu sunt trimise către un magazin și nu se efectuează plăți reale.</p>
+      <button class="primary" type="submit" style="width:100%">Testează plasarea comenzii</button>
+      <button type="button" style="width:100%;margin-top:8px" onclick="showCart()">← Înapoi la coș</button>
+    </form>`;
 }
 
-function closeOverlay(){document.getElementById("overlay").classList.remove("show")}
+function submitDemoOrder(event) {
+  event.preventDefault();
+  const form=document.getElementById("checkoutForm");
+  if(!form.reportValidity()) return;
+
+  const data=new FormData(form);
+  const payment=data.get("payment")==="card"?"Card online (demo)":"Ramburs (demo)";
+
+  document.getElementById("drawerTitle").textContent="Test finalizat!";
+  document.getElementById("drawerContent").innerHTML=`
+    <div class="empty">
+      <h2>Mulțumim, ${escapeHTML(data.get("customerName"))}!</h2>
+      <p>Ai testat cu succes formularul de checkout CLADORÉ.</p>
+      <p>Metoda selectată: <b>${payment}</b></p>
+      <p>Nu s-a trimis nicio comandă reală și nu s-a încasat nicio plată.</p>
+      <button class="primary" onclick="closeOverlay();goHome()">Înapoi la magazin</button>
+    </div>`;
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g,char=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[char]));
+}
+
+function showFavorites() {
+  document.getElementById("drawerTitle").textContent="Favoritele tale";
+  const list=products.filter(p=>favorites.includes(p.id));
+  document.getElementById("drawerContent").innerHTML=list.length?
+    list.map(p=>`<div class="cart-item">
+      <img src="${p.img}" alt="${p.name}">
+      <div class="grow"><b>${p.name}</b><p>${money(p.price)}</p>
+      <button onclick="closeOverlay();openProduct(${p.id})">Vezi produsul</button></div>
+      <button onclick="toggleFav(${p.id});showFavorites()">✕</button>
+    </div>`).join(""):'<div class="empty">Nu ai produse favorite.</div>';
+  document.getElementById("overlay").classList.add("show");
+}
+
+function closeOverlay() {
+  document.getElementById("overlay").classList.remove("show");
+}
 
 window.addEventListener("hashchange",route);
 updateCounts();
